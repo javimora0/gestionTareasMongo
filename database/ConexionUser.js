@@ -31,6 +31,16 @@ class ConexionUser {
         }
         return resultado
     }
+
+    getUsuario = async (id) => {
+        let resultado
+        try {
+            resultado = await Usuario.findById(id)
+        } catch (error) {
+            console.error(error)
+        }
+        return resultado
+    }
 }
 
 
