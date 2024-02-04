@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     horas_realizadas: { type: Number},
     porcentaje: { type: Number},
     completada: { type: Number},
-    asignado_a: { type: Schema.Types.ObjectId, ref: 'Usuario', required:true}
+    asignado_a: { type: Schema.Types.ObjectId, ref: 'Usuario'}
 
 }, { collection: 'tareas' , versionKey: false });
 

@@ -1,10 +1,16 @@
 const Tarea = require('../models/tarea')
 class ConexionTarea {
     insetarTarea = async (body, id) => {
+        let idUsuario
+        if (!id) {
+            idUsuario = null
+        }else {
+            idUsuario = id
+        }
         let resultado
         try {
             resultado = await Tarea.create({descripcion: body.descripcion, dificultad: body.dificultad, horas_previstas:body.horas_previstas,
-            horas_realizadas: body.horas_realizadas, porcentaje: body.porcentaje, completada: body.completada, asignado_a:id})
+            horas_realizadas: body.horas_realizadas, porcentaje: body.porcentaje, completada: body.completada, asignado_a:idUsuario})
         } catch (error) {
             console.error(error)
         }
