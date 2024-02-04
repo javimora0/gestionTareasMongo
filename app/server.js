@@ -8,7 +8,7 @@ class Server {
         this.app = express()
         this.accessPath = '/api'
         this.usuariosPath = '/api/usuarios'
-        this.tareasPath = '/api/tareas';
+        this.adminPath = '/api/admin';
         this.middlewares();
 
         this.conectarMongoose();
@@ -34,7 +34,7 @@ class Server {
 
     routes(){
         this.app.use(this.usuariosPath , require('../routes/userRoutes'));
-        this.app.use(this.tareasPath , require('../routes/tareasRoutes'));
+        this.app.use(this.adminPath , require('../routes/adminRoutes'));
         this.app.use(this.accessPath, require('../routes/accessRoutes'))
     }
     listen() {
