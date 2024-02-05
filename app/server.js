@@ -9,6 +9,7 @@ class Server {
         this.accessPath = '/api'
         this.usuariosPath = '/api/usuarios'
         this.adminPath = '/api/admin';
+        this.progPath = '/api/programador'
         this.middlewares();
 
         this.conectarMongoose();
@@ -33,6 +34,8 @@ class Server {
         this.app.use(this.usuariosPath , require('../routes/userRoutes'));
         this.app.use(this.adminPath , require('../routes/adminRoutes'));
         this.app.use(this.accessPath, require('../routes/accessRoutes'))
+        this.app.use(this.progPath, require('../routes/progRoutes'))
+
     }
     listen() {
         this.app.listen(process.env.PORT, () => {
