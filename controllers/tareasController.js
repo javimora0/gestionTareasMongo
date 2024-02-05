@@ -31,9 +31,18 @@ const obtenerTareas = async (req = request, res = response) => {
     res.status(200).json({'success': true, 'tareas': resultado})
 }
 
+const asignarTarea = async (req = request, res = response) => {
+    let resultado = await conx.asignarTarea(req.params.idTarea, req.params.idUsuario)
+    if (!resultado) {
+        return res.status(203).json({'success': false, 'mssg': 'Error al asignar la tarea'})
+    }
+    res.status(200).json({'success': true, 'tarea': resultado})
+}
+
 module.exports = {
     crearTarea,
     borrarTarea,
     obtenerTarea,
-    obtenerTareas
+    obtenerTareas,
+    asignarTarea
 }

@@ -41,6 +41,16 @@ class ConexionTarea {
         }
         return resultado
     }
+
+    asignarTarea = async (idTarea, idUsuario) => {
+        let tarea
+        try{
+            tarea = await Tarea.updateOne({_id:idTarea}, {asignado_a:idUsuario})
+        } catch (error) {
+            throw error
+        }
+        return tarea
+    }
 }
 
 module.exports = ConexionTarea

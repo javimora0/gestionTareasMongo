@@ -34,4 +34,9 @@ router.route('/tareas/:id')
 router.get('/tareas', controlador.obtenerTareas)
 
 
+
+// Administrador asigna tarea a un usuario
+router.put('/tarea/usuario/:idUsuario/:idTarea', mid.existeIdUsuario, mid.existeIdTarea,controlador.asignarTarea)
+
+
 module.exports = router;
