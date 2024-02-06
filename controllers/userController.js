@@ -60,6 +60,7 @@ const crearUsuario = async (req = request, res = response) => {
     if (!usuario) {
         res.status(203).json({'success': false, 'mssg': 'Error al crear usuario'})
     }
+    res.status(201).json({'usuario':usuario})
 }
 
 const tareasDisponibles = async (req = request, res = response) => {

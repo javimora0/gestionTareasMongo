@@ -80,8 +80,5 @@ router.route('/usuarios/:id')
     ],mid.existeUsuario, controladorUsuario.modificarUsuario)
 
 
-//router.put('/usuarios/rol/:id', [
-//    check('rol').custom(mid.rolExiste),
-//    validarCampos
-//],mid.existeUsuario,controladorUsuario.asignarRol)
+
 module.exports = router;

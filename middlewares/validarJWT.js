@@ -16,7 +16,6 @@ const validarAdmin = (req, res, next) => {
             res.status(400).json({'msg':'Acceso no autorizado'})
         }
     } catch (error) {
-        console.log(error)
         res.status(401).json({'msg':'Token no valido'})
     }
 }
@@ -36,7 +35,6 @@ const validarProgramador = (req, res, next) => {
             res.status(400).json({'msg':'Acceso no autorizado'})
         }
     } catch (error) {
-        console.log(error)
         res.status(401).json({'msg':'Token no valido'})
     }
 }
@@ -49,7 +47,6 @@ const validarToken = (req, res, next) => {
         const {uid, rol} = jwt.verify(token, process.env.secretOrPrivateKey)
         next()
     } catch (error) {
-        console.log(error)
         res.status(401).json({'msg':'Token no valido'})
     }
 }

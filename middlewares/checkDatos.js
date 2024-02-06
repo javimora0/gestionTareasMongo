@@ -35,17 +35,17 @@ const existeIdTarea = async (req, res, next) => {
     }
 }
 
-const emailExiste = (email = request.body.email) => {
+const emailExiste = async (email = '') => {
     return new Promise((resolve, reject) => {
-        const conx = new Conexion();
-        conx.emailExisteValidator(email)
-            .then(msg => {
-                resolve(true);
-            })
-            .catch(err => {
-                reject(new Error('Email existe'));
-            });
-    });
+      const conx = new Conexion()
+      conx.emailExisteValidator(email)
+          .then(msg => {
+              resolve(true);
+          })
+          .catch(err => {
+              reject(new Error('Email existe'))
+          });
+    })
 }
 
 const rolExiste = (rol = '') => {
@@ -65,16 +65,16 @@ const perteneceTarea = async (req, res, next) => {
 
     let tarea = await conx.getTareaUsuario(idUsuario, idTarea)
     if (!tarea) {
-        return res.status(203).json({'success':false, 'mssg':'Esta tarea no pertenece a este usuario'})
-    }else {
+        return res.status(203).json({'success': false, 'mssg': 'Esta tarea no pertenece a este usuario'})
+    } else {
         next()
     }
 }
 
-const getRanking = async(req = request, res = response) => {
+const getRanking = async (req = request, res = response) => {
     const ranking = await conx.ranking()
     if (!ranking) {
-        return res.status(200).json({'success': false, 'mssg':'Error al obtener el ranking'})
+        return res.status(200).json({'success': false, 'mssg': 'Error al obtener el ranking'})
     }
     res.status(200).json({'success': true, 'data': ranking})
 }

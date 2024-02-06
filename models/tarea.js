@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema} = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const tareaSchema = new mongoose.Schema({
     descripcion: { type: String },
     dificultad: { type: String},
     horas_previstas: { type : Number},
@@ -12,6 +12,6 @@ const userSchema = new mongoose.Schema({
 
 }, { collection: 'tareas' , versionKey: false });
 
-const TareaModel = mongoose.model('Tarea', userSchema);
+const TareaModel = mongoose.model('Tarea', tareaSchema);
 
 module.exports = TareaModel;

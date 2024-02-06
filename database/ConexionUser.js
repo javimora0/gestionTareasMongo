@@ -88,18 +88,18 @@ class ConexionUser {
     }
 
     emailExisteValidator = async (email) => {
-        let resultado = [];
+        let usuario = []
         try {
-            resultado = await Usuario.findOne({email:email})
-        } catch (error) {
-            console.log(`Aquí: ${error} `)
+            usuario = await Usuario.find({email:email})
+            console.log(usuario)
+        }catch (error) {
+            console.error(error)
         } finally {
-            console.log(`Res: ${resultado.length}`)
-            if (resultado.length !== 0) {
-                throw new CustomError('Email existe');
+            if (usuario.length !== 0) {
+                throw new CustomError('Email existe')
             }
         }
-        return resultado;
+        return usuario
     }
 
     insertarUsuario = async (body) => {
