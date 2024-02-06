@@ -100,8 +100,6 @@ class ConexionTarea {
         return tareas
     }
 
-
-
 }
 
 module.exports = ConexionTarea

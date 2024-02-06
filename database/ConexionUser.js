@@ -141,8 +141,5 @@ class ConexionUser {
             console.error("Error al cambiar la contraseña:", error);
         }
     }
-
 }
-
-
 module.exports = ConexionUser

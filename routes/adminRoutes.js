@@ -79,6 +79,4 @@ router.route('/usuarios/:id')
         validarCampos
     ],mid.existeUsuario, controladorUsuario.modificarUsuario)
 
-
-
 module.exports = router;
