@@ -17,7 +17,14 @@ const existeUsuario = async (req, res, next) => {
 }
 
 const existeIdUsuario = async (req, res, next) => {
-    let usuario = await conx.getUsuario(req.params.idUsuario)
+    const conx = new Conexion()
+    let idUsuario
+    if (!req.params.idUsuario) {
+        idUsuario = req.params.id
+    }else {
+        idUsuario = req.params.idUsuario
+    }
+    let usuario = await conx.getUsuario(idUsuario)
     if (!usuario) {
         return res.status(203).json({'success': false, 'mssg': 'Usuario no encontrado'})
     } else {
@@ -46,6 +53,15 @@ const emailExiste = async (email = '') => {
               reject(new Error('Email existe'))
           });
     })
+}
+
+const emailRegistrado = async (req, res, next) => {
+    const conx = new Conexion()
+    let usuario = await conx.emailExiste(req.body.email)
+    if(usuario) {
+        return res.status(203).json({'msg':'Ya existe un usuario con ese email'})
+    }
+    next()
 }
 
 const rolExiste = (rol = '') => {
@@ -79,6 +95,15 @@ const getRanking = async (req = request, res = response) => {
     res.status(200).json({'success': true, 'data': ranking})
 }
 
+const validarRol = async (req, res, next) => {
+    let rol = req.body.rol
+    if (rol === 'admin' || rol === 'programador') {
+        next()
+    }else {
+        res.status(203).json({'msg':'Rol incorrecto'})
+    }
+}
+
 module.exports = {
     existeUsuario,
     existeIdTarea,
@@ -86,5 +111,7 @@ module.exports = {
     emailExiste,
     rolExiste,
     perteneceTarea,
-    getRanking
+    getRanking,
+    validarRol,
+    emailRegistrado
 }

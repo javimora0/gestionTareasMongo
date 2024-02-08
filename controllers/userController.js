@@ -87,6 +87,14 @@ const modificarPassword = async (req = request, res = response) => {
     res.status(200).json({'success': true, 'mssg': 'Contraseña cambiada correctamente', 'data': resultado})
 }
 
+const asignarRol = async (req = request, res = response) => {
+    let resultado = await conx.asignarRol(req.body.rol, req.params.id)
+    if (!resultado) {
+        return res.status(203).json({'msg':'Error al asignar el rol'})
+    }
+    res.status(200).json({'msg': 'Rol asignado correctamente'})
+}
+
 module.exports = {
     registroUsuario,
     login,
@@ -97,5 +105,6 @@ module.exports = {
     crearUsuario,
     tareasDisponibles,
     getRanking,
-    modificarPassword
+    modificarPassword,
+    asignarRol
 }

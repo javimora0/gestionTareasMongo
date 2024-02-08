@@ -1,6 +1,16 @@
 const Usuario = require('../models/usuario')
 const bcrypt = require('bcrypt');
 class ConexionUser {
+    emailExiste = async (email) => {
+        let usuario
+        try {
+            usuario = await Usuario.findOne({email:email})
+        } catch (error) {
+            console.error(error)
+        }
+        return usuario
+    }
+
     registroUsuario = async (body) => {
         let retorno
         const {nombre, email,  password} = body
@@ -140,6 +150,17 @@ class ConexionUser {
         } catch (error) {
             console.error("Error al cambiar la contraseña:", error);
         }
+    }
+    asignarRol = async (rol, id) => {
+        let usuario
+        try {
+            usuario = await Usuario.findById(id)
+            usuario.rol = rol
+            usuario.save()
+        } catch (error) {
+            console.error(error)
+        }
+        return usuario
     }
 }
 module.exports = ConexionUser

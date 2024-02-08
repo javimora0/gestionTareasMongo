@@ -79,4 +79,7 @@ router.route('/usuarios/:id')
         validarCampos
     ],mid.existeUsuario, controladorUsuario.modificarUsuario)
 
+
+// Ruta para asignar rol a un usuario
+router.put('/usuario/rol/:id', midJWT.validarAdmin,mid.validarRol,mid.existeIdUsuario,controladorUsuario.asignarRol)
 module.exports = router;
