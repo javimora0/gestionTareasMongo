@@ -9,7 +9,7 @@ const crearTarea = async (req = request, res = response) => {
     if (!tarea) {
         return res.status(203).json({'success': false, 'mssg': 'Error al crear tarea'})
     }
-    res.status(200).json({'success': true, 'tarea': tarea})
+    res.status(201).json({'success': true, 'tarea': tarea})
 }
 
 const borrarTarea = async (req = request, res = response) => {
